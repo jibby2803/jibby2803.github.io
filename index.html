@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gia Binh Nguyen</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/tabler-icons.min.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --color-bg: #ffffff;
+      --color-bg-secondary: #f5f5f4;
+      --color-bg-tertiary: #eeede9;
+      --color-text-primary: #1a1a18;
+      --color-text-secondary: #5f5e5a;
+      --color-text-tertiary: #888780;
+      --color-border: rgba(0,0,0,0.11);
+      --color-border-med: rgba(0,0,0,0.20);
+      --blue-50: #E6F1FB;
+      --blue-100: #B5D4F4;
+      --blue-200: #85B7EB;
+      --blue-400: #378ADD;
+      --blue-600: #185FA5;
+      --blue-800: #0C447C;
+      --blue-900: #042C53;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+    }
+
+    /* Light theme only — dark mode intentionally disabled */
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--color-bg);
+      color: var(--color-text-primary);
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    .page {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 5rem;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      display: flex;
+      gap: 2rem;
+      align-items: flex-start;
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 0.5px solid var(--color-border);
+    }
+
+    .avatar {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+      background: var(--color-bg-secondary);
+      border: 0.5px solid var(--color-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-text-tertiary);
+      font-size: 52px;
+    }
+
+    .hero-left { display: flex; flex-direction: column; align-items: center; gap: 12px; flex-shrink: 0; width: 130px; }
+
+    .hero-info h1 { font-size: 26px; font-weight: 500; margin-bottom: 3px; }
+    .hero-info .affil { font-size: 14px; color: var(--color-text-secondary); margin-bottom: 12px; }
+    .hero-info .bio { font-size: 14px; color: var(--color-text-secondary); line-height: 1.65; max-width: 580px; }
+
+    .links { display: flex; flex-direction: row; flex-wrap: wrap; gap: 6px; width: 100%; justify-content: center; }
+    .link-btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 32px; height: 32px; flex-shrink: 0;
+      color: var(--color-text-secondary); text-decoration: none;
+      border: 0.5px solid var(--color-border-med); border-radius: var(--radius-md);
+      background: var(--color-bg);
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .link-btn:hover { background: var(--color-bg-secondary); border-color: var(--color-text-tertiary); }
+    .link-btn i { font-size: 16px; }
+    .link-btn img { width: 16px; height: 16px; object-fit: contain; display: block; }
+
+    /* ── Sections ── */
+    section { margin-bottom: 3rem; }
+    section h2 {
+      font-size: 18px; font-weight: 500;
+      margin-bottom: 1.25rem; padding-bottom: 8px;
+      border-bottom: 0.5px solid var(--color-border);
+    }
+
+    /* ── Timeline (Education / Work) ── */
+    .timeline { display: flex; flex-direction: column; gap: 0; }
+
+    .tl-item {
+      display: flex;
+      gap: 1.1rem;
+      padding: 0.85rem 0;
+      border-bottom: 0.5px solid var(--color-border);
+    }
+    .tl-item:last-child { border-bottom: none; }
+
+    .tl-logo {
+      width: 44px; height: 44px; border-radius: var(--radius-md);
+      flex-shrink: 0;
+      background: var(--color-bg-secondary);
+      border: 0.5px solid var(--color-border);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--color-text-tertiary); font-size: 22px;
+      overflow: hidden;
+    }
+    .tl-logo img { width: 100%; height: 100%; object-fit: contain; padding: 4px; }
+
+    .tl-body { flex: 1; min-width: 0; }
+    .tl-top { display: flex; align-items: baseline; justify-content: space-between; gap: 0.5rem; flex-wrap: wrap; }
+    .tl-role { font-size: 14px; font-weight: 500; color: var(--color-text-primary); }
+    .tl-date { font-size: 12px; color: var(--color-text-tertiary); white-space: nowrap; }
+    .tl-org { font-size: 13px; color: var(--blue-600); margin-bottom: 3px; }
+    .tl-desc { font-size: 13px; color: var(--color-text-secondary); line-height: 1.55; }
+    .tl-tags { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 6px; }
+    .tl-tag {
+      font-size: 11px; padding: 2px 8px; border-radius: 4px;
+      background: var(--color-bg-secondary); color: var(--color-text-secondary);
+      border: 0.5px solid var(--color-border);
+    }
+
+    /* ── Publications ── */
+    .pub-list { display: flex; flex-direction: column; gap: 1rem; }
+
+    .pub-item {
+      display: flex; gap: 1rem; align-items: flex-start;
+      padding: 1rem 1.1rem;
+      border-radius: var(--radius-lg);
+      border: 0.5px solid var(--color-border);
+      background: var(--color-bg);
+      transition: border-color 0.15s;
+    }
+    .pub-item:hover { border-color: var(--color-border-med); }
+
+    .pub-thumb-wrap { position: relative; flex-shrink: 0; width: 110px; padding-top: 14px; }
+
+    .pub-thumb {
+      width: 110px; height: 78px; border-radius: 6px;
+      background: var(--color-bg-secondary);
+      border: 0.5px solid var(--color-border);
+      overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--color-text-tertiary);
+    }
+    .pub-thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+    .pub-badge {
+      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      white-space: nowrap; font-size: 11px; font-weight: 600;
+      padding: 2px 9px; border-radius: 5px; letter-spacing: 0.02em;
+    }
+    .badge-review { background: var(--blue-50); color: var(--blue-800); border: 0.5px solid var(--blue-200); }
+    .badge-icml   { background: var(--blue-600); color: #E6F1FB; }
+    .badge-iclr   { background: var(--blue-800); color: #B5D4F4; }
+    .badge-icra   { background: var(--blue-400); color: #E6F1FB; }
+    .badge-neurips { background: var(--blue-900); color: #B5D4F4; }
+    .badge-emnlp  { background: #185FA5; color: #E6F1FB; }
+
+    .pub-info { flex: 1; min-width: 0; }
+    .pub-title { font-size: 14px; font-weight: 500; line-height: 1.45; margin-bottom: 5px; }
+
+    .pub-authors { font-size: 13px; color: var(--color-text-secondary); line-height: 1.6; margin-bottom: 3px; }
+    .pub-authors .me { color: var(--blue-600); font-weight: 500; text-decoration: underline dotted; text-underline-offset: 2px; }
+    .authors-short, .authors-full { display: inline; }
+    .authors-full { display: none; }
+
+    .show-more-btn {
+      display: inline;
+      background: none; border: none; cursor: pointer;
+      color: var(--blue-600); font-size: 13px;
+      padding: 0; text-decoration: underline dotted;
+      text-underline-offset: 2px;
+    }
+    .show-more-btn:hover { color: var(--blue-800); }
+
+    .pub-venue { font-size: 12px; color: var(--color-text-tertiary); font-style: italic; margin-bottom: 9px; }
+
+    .pub-links { display: flex; gap: 6px; flex-wrap: wrap; }
+    .pub-link {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: 12px; color: var(--color-text-primary);
+      text-decoration: none;
+      border: 0.5px solid var(--color-border-med); border-radius: 4px;
+      padding: 3px 9px; background: var(--color-bg-secondary);
+      transition: background 0.15s;
+    }
+    .pub-link:hover { background: var(--color-bg-tertiary); }
+    .pub-link i { font-size: 13px; }
+    .pub-link img { width: 13px; height: 13px; object-fit: contain; vertical-align: -2px; }
+    .cofirst { font-size: 11px; color: var(--color-text-tertiary); margin-top: 5px; }
+
+    /* ── Open Source ── */
+    .os-list { display: flex; flex-direction: column; gap: 0.75rem; }
+    .os-item {
+      display: flex; gap: 1rem; align-items: flex-start;
+      padding: 0.85rem 1rem;
+      border-radius: var(--radius-lg);
+      border: 0.5px solid var(--color-border);
+      background: var(--color-bg);
+      transition: border-color 0.15s;
+    }
+    .os-item:hover { border-color: var(--color-border-med); }
+    .os-icon {
+      width: 36px; height: 36px; border-radius: var(--radius-md);
+      background: var(--color-bg-secondary); border: 0.5px solid var(--color-border);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--color-text-secondary); font-size: 18px; flex-shrink: 0;
+    }
+    .os-body { flex: 1; min-width: 0; }
+    .os-top { display: flex; align-items: baseline; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2px; }
+    .os-name { font-size: 14px; font-weight: 500; color: var(--blue-600); text-decoration: none; }
+    .os-name:hover { text-decoration: underline; }
+    .os-stars { font-size: 12px; color: var(--color-text-tertiary); display: flex; align-items: center; gap: 3px; }
+    .os-desc { font-size: 13px; color: var(--color-text-secondary); line-height: 1.5; }
+
+    
+
+    /* ── Awards ── */
+    .award-list { display: flex; flex-direction: column; gap: 0; }
+    .award-item {
+      display: flex; gap: 1rem; align-items: flex-start;
+      padding: 0.8rem 0;
+      border-bottom: 0.5px solid var(--color-border);
+    }
+    .award-item:last-child { border-bottom: none; }
+    .award-icon {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: var(--blue-50); border: 0.5px solid var(--blue-100);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--blue-600); font-size: 16px; flex-shrink: 0; margin-top: 1px;
+    }
+    .award-body { flex: 1; }
+    .award-top { display: flex; align-items: baseline; justify-content: space-between; gap: 0.5rem; flex-wrap: wrap; }
+    .award-title { font-size: 14px; font-weight: 500; }
+    .award-year { font-size: 12px; color: var(--color-text-tertiary); }
+    .award-org { font-size: 13px; color: var(--color-text-secondary); }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .hero { flex-direction: column; gap: 1.25rem; }
+      .hero-left { flex-direction: row; width: 100%; align-items: center; }
+      .avatar { width: 72px; height: 72px; font-size: 28px; flex-shrink: 0; }
+      .links { justify-content: center; }
+      .pub-thumb-wrap { width: 80px; }
+      .pub-thumb { width: 80px; height: 56px; }
+      .tl-top { flex-direction: column; gap: 1px; }
+    }
+
+    .pub-thumb img { cursor: zoom-in; transition: opacity 0.15s; }
+    .pub-thumb img:hover { opacity: 0.88; }
+
+    /* ── Lightbox ── */
+    .lightbox-overlay {
+    position: fixed; inset: 0; background: rgba(10,10,9,0.88);
+    display: none; align-items: center; justify-content: center;
+    padding: 4vh 4vw; z-index: 1000; cursor: zoom-out;
+    }
+    .lightbox-overlay.active { display: flex; }
+    .lightbox-overlay img {
+    max-width: 100%; max-height: 100%; cursor: default;
+    border-radius: var(--radius-md);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+    .lightbox-close {
+    position: absolute; top: 20px; right: 24px;
+    width: 38px; height: 38px; border-radius: 50%;
+    background: rgba(255,255,255,0.08); border: 0.5px solid rgba(255,255,255,0.25);
+    color: #fff; font-size: 20px; line-height: 1;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: background 0.15s;
+    }
+    .lightbox-close:hover { background: rgba(255,255,255,0.18); }
+    .avatar { cursor: zoom-in; transition: opacity 0.15s; }
+    .avatar:hover { opacity: 0.9; }
+
+
+    .os-stars {
+        display: inline-flex; align-items: center; gap: 4px;
+        font-size: 12px; color: var(--color-text-primary);
+        border: 0.5px solid var(--color-border-med); border-radius: 4px;
+        padding: 3px 9px; background: var(--color-bg-secondary);
+        transition: background 0.15s;
+        }
+    .os-stars:hover { background: var(--color-bg-tertiary); }
+    .star-icon { width: 12px; height: 12px; object-fit: contain; flex-shrink: 0; }
+    .pub-title {
+        display: block;
+        color: inherit;
+        text-decoration: none;
+        }
+    .pub-title:hover { text-decoration: underline; }
+
+    .tl-org a,
+    .tl-logo a {
+    color: inherit;
+    text-decoration: none;
+    }
+
+    .tl-org a:hover {
+    text-decoration: underline;
+    }
+
+    .tl-logo a {
+    display: contents;
+    }
+
+    .bio a {
+    color: var(--accent,  #185FA5);
+    text-decoration: none;
+    }
+
+    .bio {
+    margin-bottom: 0.6em;
+    }
+
+    .bio a:hover {
+    text-decoration: underline;
+    }
+
+    </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ── Hero ── -->
+  <div class="hero">
+    <!-- Replace div with: <img class="avatar" src="images/photo.jpg" alt="Gia Binh Nguyen"> -->
+    <div class="hero-left">
+      <img class="avatar" src="assets/images/jibby.jpg" alt="Gia Binh Nguyen">
+      <!-- <div class="avatar"><i class="ti ti-user" aria-hidden="true"></i></div> -->
+      <div class="links">
+        <a class="link-btn" href="https://scholar.google.com/citations?user=O31B8_EAAAAJ" target="_blank" title="Google Scholar" aria-label="Google Scholar">
+          <img src="assets/logo/scholar.png" alt="">
+        </a>
+        <a class="link-btn" href="https://github.com/jibby2803" target="_blank" title="GitHub" aria-label="GitHub">
+          <img src="assets/logo/github.png" alt="">
+        </a>
+        <!-- update href to your LinkedIn profile -->
+        <a class="link-btn" href="https://www.linkedin.com/in/jibby2803/" target="_blank" title="LinkedIn" aria-label="LinkedIn">
+          <img src="assets/logo/linkedin.png" alt="">
+        </a>
+        <!-- update href to your YouTube channel -->
+        <!-- <a class="link-btn" href="#" target="_blank" title="YouTube" aria-label="YouTube">
+          <img src="assets/logo/youtube.png" alt="">
+        </a> -->
+        <a class="link-btn" href="mailto:binhng2803@gmail.com" title="Email" aria-label="Email">
+          <!-- <i class="ti ti-mail" aria-hidden="true"></i> -->
+          <img src="assets/logo/email.jpg" alt="">
+        </a>
+        <a class="link-btn" href="#" target="_blank" title="CV" aria-label="CV">
+          <!-- <i class="ti ti-file-cv" aria-hidden="true"></i> -->
+           <img src="assets/logo/cv.svg" alt="">
+        </a>
+      </div>
+    </div>
+    <div class="hero-info">
+      <h1>Gia Binh Nguyen</h1>
+      <div class="affil">Email: binhng2803@gmail.com · Phone number: (+84) 911 212 262</div>
+      <div class="affil">Research Interests: Efficient AI, Model Compression, Multimodal Models</div>
+      <p class="bio">
+        I recently graduated with a B.Sc. in Artificial Intelligence from <a href="https://daihoc.fpt.edu.vn/" target="_blank" rel="noopener noreferrer">FPT University</a>. I am currently an AI Research Resident at the <a href="https://cair.vinuni.edu.vn/" target="_blank" rel="noopener noreferrer">Center for Artificial Intelligence Research (CAIR)</a>, <a href="https://vinuni.edu.vn/" target="_blank" rel="noopener noreferrer">VinUni</a>, working on vision-language-action models for robotic manipulation and efficient model.
+      </p>
+      <p class="bio">
+        My research passion lies in <strong>Efficient AI</strong> — making powerful models faster, smaller, and more deployable in the real world.
+      </p>
+      <p class="bio">
+        I am actively seeking <strong>Master's or Ph.D. scholarship opportunities</strong> to dive deeper into this space. Feel free to reach out!
+      </p>
+    </div>
+  </div>
+
+  <!-- ── Education ── -->
+  <section>
+    <h2>Education</h2>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-logo">
+          <a href="https://daihoc.fpt.edu.vn/" target="_blank" rel="noopener noreferrer">
+            <img src="assets/logo/fptu.png" alt="FPTU">
+          </a>
+        </div>
+        <div class="tl-body">
+          <div class="tl-top">
+            <span class="tl-role">B.Sc. in Artificial Intelligence</span>
+            <span class="tl-date">2022 – 2026</span>
+          </div>
+          <div class="tl-org"><a href="https://daihoc.fpt.edu.vn/" target="_blank" rel="noopener noreferrer">FPT University</a>, Hanoi, Vietnam</div>
+          <div class="tl-desc">Graduated with honors. GPA: 8.59/10</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Work Experience ── -->
+  <section>
+    <h2>Work Experience</h2>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-logo">
+          <a href="https://vinuni.edu.vn/" target="_blank" rel="noopener noreferrer">
+            <img src="assets/logo/vinuni.webp" alt="VinUni">
+          </a>
+        </div>
+        <div class="tl-body">
+          <div class="tl-top">
+            <span class="tl-role">AI Research Resident</span>
+            <span class="tl-date">2025 – Present</span>
+          </div>
+          <div class="tl-org"><a href="https://cair.vinuni.edu.vn/" target="_blank" rel="noopener noreferrer">Center for Artificial Intelligence Research (CAIR) – VinUniversity</a> / <a href="https://vinrobotics.net/" target="_blank" rel="noopener noreferrer">VinRobotics</a> · Hanoi, Vietnam</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-logo">
+          <a href="https://www.upwork.com/" target="_blank" rel="noopener noreferrer">
+            <img src="assets/logo/upwork.png" alt="Upwork">
+          </a>
+        </div>
+        <div class="tl-body">
+          <div class="tl-top">
+            <span class="tl-role">AI Engineer Freelancer</span>
+            <span class="tl-date">2024 – 2025</span>
+          </div>
+          <div class="tl-org"><a href="https://www.upwork.com/" target="_blank" rel="noopener noreferrer">Upwork</a> · Remote</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-logo">
+          <a href="https://bsmlabs.io/" target="_blank" rel="noopener noreferrer">
+            <img src="assets/logo/bsmlabs.png" alt="BSM Labs">
+          </a>
+        </div>
+        <div class="tl-body">
+          <div class="tl-top">
+            <span class="tl-role">AI Engineer</span>
+            <span class="tl-date">2024 – 2025</span>
+          </div>
+          <div class="tl-org"><a href="https://bsmlabs.io/" target="_blank" rel="noopener noreferrer">BSM Labs</a> · Hanoi, Vietnam</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-logo">
+          <a href="https://www.aimesoft.com/" target="_blank" rel="noopener noreferrer">
+            <img src="assets/logo/aimesoft.png" alt="Aimesoft">
+          </a>
+        </div>
+        <div class="tl-body">
+          <div class="tl-top">
+            <span class="tl-role">AI Intern</span>
+            <span class="tl-date">2024</span>
+          </div>
+          <div class="tl-org"><a href="https://www.aimesoft.com/" target="_blank" rel="noopener noreferrer">Aimesoft</a> · Hanoi, Vietnam</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Publications ── -->
+  <section>
+    <h2>Publications</h2>
+    <div class="pub-list">
+
+
+        <!-- FOCA (ICML 2026) — many authors -->
+      <div class="pub-item">
+        <div class="pub-thumb-wrap">
+          <div class="pub-thumb">
+            <img src="assets/images/foca.png" alt="FOCA thumbnail">
+            <!-- <i class="ti ti-file-description" style="font-size:28px" aria-hidden="true"></i> -->
+          </div>
+          <span class="pub-badge badge-icml">ICML 2026</span>
+        </div>
+        <div class="pub-info">
+          <a class="pub-title" href="https://icml.cc/virtual/2026/poster/66754" target="_blank">FOCA: Future-Oriented Conditioning for Data-Efficient Vision-Language-Action Adaptation</a>
+          <!-- <div class="pub-title">FOCA: Future-Oriented Conditioning for Data-Efficient Vision-Language-Action Adaptation</div> -->
+          <div class="pub-authors">
+            <span class="authors-short">
+              <span class="me">Binh G. Nguyen*</span>, Duc M. Nguyen*, Nghiem T. Diep*, Trong-Bao Ho, Doanh Le, Tan Nguyen, Thien-Loc Ha, Tran Nhiem, Bao Thach, Nhat Tran,
+              <button class="show-more-btn" onclick="toggleAuthors(this)">and 13 more authors</button>
+            </span>
+            <span class="authors-full">
+              <span class="me">Binh G. Nguyen*</span>, Duc M. Nguyen*, Nghiem T. Diep*, Trong-Bao Ho, Doanh Le, Tan Nguyen, Thien-Loc Ha, Tran Nhiem, Bao Thach, Nhat Tran,
+              Tuan Anh Tran, Artur Habuda, Philip Lund Moeller, Tran Nguyen Le, Daniel Sonntag, Mathias Niepert, Khoa Doan, Vu Duong, Hung Ngo, Minh Vu,
+              Duy MH Nguyen, An Thai Le, Vien Ngo
+              <button class="show-more-btn" onclick="toggleAuthors(this)">show less</button>
+            </span>
+          </div>
+          <div class="pub-venue">International Conference on Machine Learning (ICML), 2026</div>
+          <div class="pub-links">
+            <a class="pub-link" href="https://icml.cc/virtual/2026/poster/66754"><i class="ti ti-file-text" aria-hidden="true"></i> PDF </a>
+            <a class="pub-link" href="https://focasite.vercel.app/#"><i class="ti ti-file-text" aria-hidden="true"></i> Website </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CLP / CoRL under review -->
+      <div class="pub-item">
+        <div class="pub-thumb-wrap">
+          <div class="pub-thumb">
+            <img src="assets/images/clp.png" alt="CLP thumbnail">
+            <!-- <i class="ti ti-file-description" style="font-size:28px" aria-hidden="true"></i> -->
+          </div>
+          <span class="pub-badge badge-review">Under Review</span>
+        </div>
+        <div class="pub-info">
+          <a class="pub-title" href="#" target="_blank">Finetuning Vision‑Language‑Action Models Requires Fewer Layers Than You Think</a>
+          <div class="pub-authors">
+            <span class="authors-short">
+              <span class="me">Binh G. Nguyen*</span>, Trong-Bao Ho, Thien-Loc Ha, Khoa Vo, Philip Lund Møller, Quang Tan Nguyen, 
+              Long Dinh, Tuan Quan Dam, Vu N. Duong, Tung Minh Luu, Trung Le,
+              <button class="show-more-btn" onclick="toggleAuthors(this)">and 10 more authors</button>
+            </span>
+            <span class="authors-full">
+              <span class="me">Binh G. Nguyen*</span>, Trong-Bao Ho, Thien-Loc Ha, Khoa Vo, Philip Lund Møller, Quang Tan Nguyen, 
+              Long Dinh, Tuan Quan Dam, Vu N. Duong, Tung Minh Luu, Trung Le, Tran Nguyen Le, 
+              Minh Nhat Vu, An Thai Le, Ngan Le, Daniel Sonntag, 
+              James Zou, Jan Peters, Duy Minh Nguyen Ho, Vien Anh Ngo
+              <button class="show-more-btn" onclick="toggleAuthors(this)">show less</button>
+            </span>
+          </div>
+          <div class="pub-venue">Under Review · 2026</div>
+          <div class="pub-links">
+            <!-- <a class="pub-link" href="#"><i class="ti ti-file-text" aria-hidden="true"></i> PDF</a> -->
+            <!-- <a class="pub-link" href="#"><img src="assets/logo/github.png" alt=""> Code</a> -->
+             <!-- <a class="pub-link" href="#"><i class="ti ti-file-text" aria-hidden="true"></i> Website </a> -->
+          </div>
+          <!-- <div class="cofirst">*Co-first contributions</div> -->
+        </div>
+      </div>
+
+    <!-- PAINT / CoRL under review -->
+      <div class="pub-item">
+        <div class="pub-thumb-wrap">
+          <div class="pub-thumb">
+            <img src="assets/images/paint.png" alt="PAINT thumbnail">
+            <!-- <i class="ti ti-file-description" style="font-size:28px" aria-hidden="true"></i> -->
+          </div>
+          <span class="pub-badge badge-review">Under Review</span>
+        </div>
+        <div class="pub-info">
+          <a class="pub-title" href="https://paint-action-chunking.github.io/paper/PAINT.pdf" target="_blank">Start Right, Arrive Right: Asynchronous Execution via Initial Noise Selection</a>
+          <div class="pub-authors">
+            <span class="authors-short">
+              Trong-Bao Ho*, Quang Tan Nguyen*, Thien-Loc Ha*, <span class="me">Binh G. Nguyen</span>, Viet-Thanh Nguyen, Long Dinh, 
+              Minh Nhat VU, Duy Minh Ho Nguyen, An Thai Le, Vien Anh Ngo
+              <!-- <button class="show-more-btn" onclick="toggleAuthors(this)">and 10 more authors</button> -->
+            </span>
+            <!-- <span class="authors-full">
+              Trong-Bao Ho*, Quang Tan Nguyen*, Thien-Loc Ha*, <span class="me">Binh G. Nguyen*</span>, Viet-Thanh Nguyen, Long Dinh, 
+              Minh Nhat VU, Duy Minh Ho Nguyen, An Thai Le, Vien Anh Ngo
+              <button class="show-more-btn" onclick="toggleAuthors(this)">show less</button>
+            </span> -->
+          </div>
+          <div class="pub-venue">Under Review · 2026</div>
+          <div class="pub-links">
+            <a class="pub-link" href="https://paint-action-chunking.github.io/paper/PAINT.pdf"><i class="ti ti-file-text" aria-hidden="true"></i> PDF</a>
+            <!-- <a class="pub-link" href="#"><img src="assets/logo/github.png" alt=""> Code</a> -->
+             <a class="pub-link" href="https://paint-action-chunking.github.io/"><i class="ti ti-file-text" aria-hidden="true"></i> Website </a>
+          </div>
+          <!-- <div class="cofirst">*Co-first contributions</div> -->
+        </div>
+      </div>
+
+    <!-- Equivla / CoRL under review -->
+      <div class="pub-item">
+        <div class="pub-thumb-wrap">
+          <div class="pub-thumb">
+            <img src="assets/images/equivla.png" alt="Equivla thumbnail">
+            <!-- <i class="ti ti-file-description" style="font-size:28px" aria-hidden="true"></i> -->
+          </div>
+          <span class="pub-badge badge-review">Under Review</span>
+        </div>
+        <div class="pub-info">
+          <a class="pub-title" href="#" target="_blank">EquiVLA: A General Framework for Rotationally Equivariant Vision–Language–Action Models</a>
+          <div class="pub-authors">
+            <span class="authors-short">
+              Thien-Loc Ha*, Quang Tan Nguyen*, Trong-Bao Ho*, Long Dinh, Minh Duc Nguyen, <span class="me">Binh G. Nguyen</span>, 
+              Pham Tri Quang, Minh Nhat VU, Duy Minh Ho Nguyen, An Thai Le, Vien Anh Ngo
+              <!-- <button class="show-more-btn" onclick="toggleAuthors(this)">and 10 more authors</button> -->
+            </span>
+            <!-- <span class="authors-full">
+              Trong-Bao Ho*, Quang Tan Nguyen*, Thien-Loc Ha*, <span class="me">Binh G. Nguyen*</span>, Viet-Thanh Nguyen, Long Dinh, 
+              Minh Nhat VU, Duy Minh Ho Nguyen, An Thai Le, Vien Anh Ngo
+              <button class="show-more-btn" onclick="toggleAuthors(this)">show less</button>
+            </span> -->
+          </div>
+          <div class="pub-venue">Under Review · 2026</div>
+          <div class="pub-links">
+            <!-- <a class="pub-link" href="#"><i class="ti ti-file-text" aria-hidden="true"></i> PDF</a> -->
+            <!-- <a class="pub-link" href="#"><img src="assets/logo/github.png" alt=""> Code</a> -->
+             <a class="pub-link" href="https://equivla.github.io/equivla/"><i class="ti ti-file-text" aria-hidden="true"></i> Website </a>
+          </div>
+          <!-- <div class="cofirst">*Co-first contributions</div> -->
+        </div>
+      </div>
+
+    <!-- preference / CoRL under review -->
+      <div class="pub-item">
+        <div class="pub-thumb-wrap">
+          <div class="pub-thumb">
+            <img src="assets/images/preferencevla.png" alt="Preference thumbnail">
+            <!-- <i class="ti ti-file-description" style="font-size:28px" aria-hidden="true"></i> -->
+          </div>
+          <span class="pub-badge badge-review">Under Review</span>
+        </div>
+        <div class="pub-info">
+          <a class="pub-title" href="#" target="_blank">Progress-Guided Preference Generation for Aligning Generative Control Policies</a>
+          <div class="pub-authors">
+            <span class="authors-short">
+              Tung Minh Luu*, Tri Ton, Minh Duc Nguyen, Thanh Xuan Nguyen, <span class="me">Nguyen Gia Binh</span>, 
+              Quang Tan Nguyen, Vu N. Duong, Daniel Sonntag, Duy Minh Ho Nguyen, Vien Anh Ngo, Chang D. Yoo
+              <!-- <button class="show-more-btn" onclick="toggleAuthors(this)">and 10 more authors</button> -->
+            </span>
+            <!-- <span class="authors-full">
+              Trong-Bao Ho*, Quang Tan Nguyen*, Thien-Loc Ha*, <span class="me">Binh G. Nguyen*</span>, Viet-Thanh Nguyen, Long Dinh, 
+              Minh Nhat VU, Duy Minh Ho Nguyen, An Thai Le, Vien Anh Ngo
+              <button class="show-more-btn" onclick="toggleAuthors(this)">show less</button>
+            </span> -->
+          </div>
+          <div class="pub-venue">Under Review · 2026</div>
+          <div class="pub-links">
+            <!-- <a class="pub-link" href="#"><i class="ti ti-file-text" aria-hidden="true"></i> PDF</a>
+            <a class="pub-link" href="#"><img src="assets/logo/github.png" alt=""> Code</a>
+            <a class="pub-link" href="#"><i class="ti ti-file-text" aria-hidden="true"></i> Website </a> -->
+          </div>
+          <!-- <div class="cofirst">*Co-first contributions</div> -->
+        </div>
+      </div>
+
+
+    <!-- self / Neurips2026 under review -->
+      <div class="pub-item">
+        <div class="pub-thumb-wrap">
+          <div class="pub-thumb">
+            <img src="assets/images/self.png" alt="self thumbnail">
+            <!-- <i class="ti ti-file-description" style="font-size:28px" aria-hidden="true"></i> -->
+          </div>
+          <span class="pub-badge badge-review">Under Review</span>
+        </div>
+        <div class="pub-info">
+          <a class="pub-title" href="https://arxiv.org/pdf/2606.14084" target="_blank">Self-Improving VLA Policies: Selected Diffusion Noise for Spurious-Robust Action Smoothing</a>
+          <div class="pub-authors">
+            <span class="authors-short">
+              Minh Duc Nguyen*, Bao-Ngoc Dao, Tung Minh Luu, <span class="me">Nguyen Gia Binh</span>, Vinh Tong, Anji Liu, Vu N. Duong, Dung D. Le, Daniel Sonntag,
+              <button class="show-more-btn" onclick="toggleAuthors(this)">and 9 more authors</button>
+            </span>
+            <span class="authors-full">
+              Minh Duc Nguyen*, Bao-Ngoc Dao, Tung Minh Luu, <span class="me">Nguyen Gia Binh</span>, Vinh Tong, Anji Liu, Vu N. Duong, Dung D. Le,
+                Daniel Sonntag, Trung Le, Ngan Le, Jan Peters, An Thai Le, Minh Nhat VU, Mathias Niepert, Khoa D Doan, Duy Minh Ho Nguyen, Vien Anh Ngo
+              <button class="show-more-btn" onclick="toggleAuthors(this)">show less</button>
+            </span>
+          </div>
+          <div class="pub-venue">Under Review · 2026</div>
+          <div class="pub-links">
+            <a class="pub-link" href="https://arxiv.org/pdf/2606.14084"><i class="ti ti-file-text" aria-hidden="true"></i> PDF</a>
+            <!-- <a class="pub-link" href="#"><img src="assets/logo/github.png" alt=""> Code</a>
+            <a class="pub-link" href="https://focasite.vercel.app/#"><i class="ti ti-file-text" aria-hidden="true"></i> Website </a> -->
+          </div>
+          <!-- <div class="cofirst">*Co-first contributions</div> -->
+        </div>
+      </div>
+ 
+
+    </div>
+  </section>
+
+
+  <!-- ── Open Source ── -->
+    <section>
+    <h2>Open-source Contributions</h2>
+    <div class="os-list">
+
+        <div class="os-item">
+        <div class="os-body">
+            <div class="os-top">
+            <a class="os-name" href="https://github.com/Tavish9/any4lerobot" target="_blank">Tavish9/any4lerobot</a>
+            <span class="os-stars" data-repo="Tavish9/any4lerobot">
+                <img src="assets/logo/star.png" alt="" class="star-icon"> <span class="star-count">…</span>
+            </span>
+            </div>
+            <div class="os-desc">A curated toolbox of data-conversion utilities for LeRobot. Contributed the RoboCasa → LeRobot dataset conversion pipeline.</div>
+        </div>
+        </div>
+
+    </div>
+    </section>
+
+  <!-- ── Honors & Awards ── -->
+  <section>
+  <h2>Honors &amp; Awards</h2>
+  <div class="award-list">
+
+    <div class="award-item">
+      <div class="award-body">
+        <div class="award-top">
+          <span class="award-title">Champion</span>
+          <span class="award-year">2024</span>
+        </div>
+        <div class="award-org">Top 1/22 teams — Funix GenAI Hackathon: MindGPT - Mindmap generation web-app</div>
+      </div>
+    </div>
+
+    <div class="award-item">
+      <div class="award-body">
+        <div class="award-top">
+          <span class="award-title">Finalist</span>
+          <span class="award-year">2024</span>
+        </div>
+        <div class="award-org">Top 8/70 Teams —  Pixta AI Hackathon Face Analysis Challenge</div>
+      </div>
+    </div>
+
+    <div class="award-item">
+      <div class="award-body">
+        <div class="award-top">
+          <span class="award-title">FPTU 100% Scholarship</span>
+          <span class="award-year">2022 – 2026</span>
+        </div>
+        <div class="award-org">FPT University — covers full 4-year tuition; highest Logic Math score (86/90)</div>
+      </div>
+    </div>
+
+    <div class="award-item">
+      <div class="award-body">
+        <div class="award-top">
+          <span class="award-title">Honorable Student Award</span>
+          <span class="award-year">2022 – 2026</span>
+        </div>
+        <div class="award-org">FPT University — all semesters</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="lightbox-overlay" id="lightboxOverlay">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
+  <img id="lightboxImg" src="" alt="">
+</div>
+
+
+<script>
+    function toggleAuthors(btn) {
+        const authorsDiv = btn.closest('.pub-authors');
+        const shortEl = authorsDiv.querySelector('.authors-short');
+        const fullEl  = authorsDiv.querySelector('.authors-full');
+        const isShowing = shortEl.style.display !== 'none';
+        shortEl.style.display = isShowing ? 'none' : 'inline';
+        fullEl.style.display  = isShowing ? 'inline' : 'none';
+    }
+
+  // ── Lightbox (click a publication thumbnail to zoom) ──
+    const lightboxOverlay = document.getElementById('lightboxOverlay');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxClose = document.getElementById('lightboxClose');
+
+    function openLightbox(src, alt) {
+    lightboxImg.src = src;
+    lightboxImg.alt = alt || '';
+    lightboxOverlay.classList.add('active');
+    }
+    function closeLightbox() {
+    lightboxOverlay.classList.remove('active');
+    }
+
+    document.querySelectorAll('.pub-thumb img, .avatar').forEach(function (img) {
+    img.addEventListener('click', function () {
+        openLightbox(img.src, img.alt);
+    });
+    });
+
+
+    lightboxOverlay.addEventListener('click', function (e) {
+    if (e.target === lightboxOverlay) closeLightbox();
+    });
+    lightboxClose.addEventListener('click', closeLightbox);
+    document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeLightbox();
+    });
+
+    // ── Live GitHub star counts ──
+    document.querySelectorAll('.os-stars[data-repo]').forEach(function (el) {
+    const repo = el.dataset.repo;
+    const countEl = el.querySelector('.star-count');
+    fetch('https://api.github.com/repos/' + repo)
+        .then(function (res) {
+        if (!res.ok) throw new Error('GitHub API error');
+        return res.json();
+        })
+        .then(function (data) {
+        countEl.textContent = data.stargazers_count.toLocaleString();
+        })
+        .catch(function (err) {
+        countEl.textContent = '—';
+        console.warn('Could not load star count for', repo, err);
+        });
+    });
+
+</script>
+</body>
+</html>

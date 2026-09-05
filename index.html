@@ -44,38 +44,57 @@
       padding: 2.5rem 1.5rem 5rem;
     }
 
-    /* ── Hero ── */
     .hero {
       display: flex;
-      gap: 2rem;
-      align-items: flex-start;
+      flex-direction: column;   /* stack top row above bottom row */
+      gap: 14px;
       margin-bottom: 3rem;
       padding-bottom: 2rem;
       border-bottom: 0.5px solid var(--color-border);
     }
 
+    /* Top row: name + icons on the same line */
+    .hero-top {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .hero-top h1 {
+      font-size: 35px;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    /* Bottom row: avatar left, bio right */
+    .hero-bottom {
+      display: flex;
+      gap: 2rem;
+      align-items: flex-start;
+    }
+
     .avatar {
-      width: 130px;
-      height: 130px;
-      border-radius: 50%;
+      width: 200px;
+      height: 250px;
+      border-radius: 10px;
       object-fit: cover;
       flex-shrink: 0;
       background: var(--color-bg-secondary);
       border: 0.5px solid var(--color-border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--color-text-tertiary);
-      font-size: 52px;
     }
 
-    .hero-left { display: flex; flex-direction: column; align-items: center; gap: 12px; flex-shrink: 0; width: 130px; }
-
-    .hero-info h1 { font-size: 26px; font-weight: 500; margin-bottom: 3px; }
+    .hero-info { flex: 1; min-width: 0; }
     .hero-info .affil { font-size: 14px; color: var(--color-text-secondary); margin-bottom: 12px; }
     .hero-info .bio { font-size: 14px; color: var(--color-text-secondary); line-height: 1.65; max-width: 580px; }
 
-    .links { display: flex; flex-direction: row; flex-wrap: wrap; gap: 6px; width: 100%; justify-content: center; }
+    /* Icons: horizontal row, no longer stacked/centered under avatar */
+    .links {
+      display: flex;
+      flex-direction: row;
+      gap: 6px;
+    }
+
     .link-btn {
       display: inline-flex; align-items: center; justify-content: center;
       width: 32px; height: 32px; flex-shrink: 0;
@@ -85,9 +104,7 @@
       transition: background 0.15s, border-color 0.15s;
     }
     .link-btn:hover { background: var(--color-bg-secondary); border-color: var(--color-text-tertiary); }
-    .link-btn i { font-size: 16px; }
     .link-btn img { width: 16px; height: 16px; object-fit: contain; display: block; }
-
     /* ── Sections ── */
     section { margin-bottom: 3rem; }
     section h2 {
@@ -333,15 +350,14 @@
     </style>
 </head>
 <body>
-<div class="page">
+  <div class="page">
 
   <!-- ── Hero ── -->
   <div class="hero">
-    <!-- Replace div with: <img class="avatar" src="images/photo.jpg" alt="Gia Binh Nguyen"> -->
-    <div class="hero-left">
-      <!-- <img class="avatar" src="assets/images/jibby.jpg" alt="Gia Binh Nguyen"> -->
-      <img class="avatar" src="assets/images/jibby3.png" alt="Gia Binh Nguyen">
-      <!-- <div class="avatar"><i class="ti ti-user" aria-hidden="true"></i></div> -->
+
+    <!-- Top row: name + social icons -->
+    <div class="hero-top">
+      <h1>Gia Binh Nguyen</h1>
       <div class="links">
         <a class="link-btn" href="https://scholar.google.com/citations?user=GzS50PAAAAAJ&hl=en" target="_blank" title="Google Scholar" aria-label="Google Scholar">
           <img src="assets/logo/scholar.png" alt="">
@@ -349,38 +365,37 @@
         <a class="link-btn" href="https://github.com/jibby2803" target="_blank" title="GitHub" aria-label="GitHub">
           <img src="assets/logo/github.png" alt="">
         </a>
-        <!-- update href to your LinkedIn profile -->
         <a class="link-btn" href="https://www.linkedin.com/in/jibby2803/" target="_blank" title="LinkedIn" aria-label="LinkedIn">
           <img src="assets/logo/linkedin.png" alt="">
         </a>
-        <!-- update href to your YouTube channel -->
-        <!-- <a class="link-btn" href="#" target="_blank" title="YouTube" aria-label="YouTube">
-          <img src="assets/logo/youtube.png" alt="">
-        </a> -->
         <a class="link-btn" href="mailto:binhng2803@gmail.com" title="Email" aria-label="Email">
-          <!-- <i class="ti ti-mail" aria-hidden="true"></i> -->
           <img src="assets/logo/email.jpg" alt="">
         </a>
         <a class="link-btn" href="assets/documents/cv.pdf" target="_blank" title="CV" aria-label="CV">
-          <!-- <i class="ti ti-file-cv" aria-hidden="true"></i> -->
-           <img src="assets/logo/cv.svg" alt="">
+          <img src="assets/logo/cv.svg" alt="">
         </a>
       </div>
     </div>
-    <div class="hero-info">
-      <h1>Gia Binh Nguyen</h1>
-      <div class="affil">Email: <a href="mailto:binhng2803@gmail.com" style="color: inherit; text-decoration: none;">binhng2803@gmail.com</a> · Phone number: (+84) 911 212 262</div>
-      <div class="affil">Research Interests: Efficient AI, Model Compression, Multimodal Models</div>
-      <p class="bio">
-        I recently graduated with a B.Sc. in Artificial Intelligence from <a href="https://daihoc.fpt.edu.vn/" target="_blank" rel="noopener noreferrer">FPT University</a>. I am currently an AI Research Resident at the <a href="https://cair.vinuni.edu.vn/" target="_blank" rel="noopener noreferrer">Center for Artificial Intelligence Research (CAIR)</a>, <a href="https://vinuni.edu.vn/" target="_blank" rel="noopener noreferrer">VinUni</a>, working on vision-language-action models for robotic manipulation and efficient model.
-      </p>
-      <p class="bio">
-        My research passion lies in <strong>Efficient AI</strong> — making powerful models faster, smaller, and more deployable in the real world.
-      </p>
-      <p class="bio">
-        I am actively seeking <strong>Master's or Ph.D. scholarship opportunities</strong> to dive deeper into this space. Feel free to reach out!
-      </p>
+
+    <!-- Bottom row: avatar + bio -->
+    <div class="hero-bottom">
+      <img class="avatar" src="assets/images/jibby3.png" alt="Gia Binh Nguyen">
+
+      <div class="hero-info">
+        <div class="affil">Email: <a href="mailto:binhng2803@gmail.com" style="color: inherit; text-decoration: none;">binhng2803@gmail.com</a> · Phone number: (+84) 911 212 262</div>
+        <div class="affil">Research Interests: Efficient AI, Model Compression, Multimodal Models</div>
+        <p class="bio">
+          I recently graduated with a B.Sc. in Artificial Intelligence from <a href="https://daihoc.fpt.edu.vn/" target="_blank" rel="noopener noreferrer">FPT University</a>. I am currently an AI Research Resident at the <a href="https://cair.vinuni.edu.vn/" target="_blank" rel="noopener noreferrer">Center for Artificial Intelligence Research (CAIR)</a>, <a href="https://vinuni.edu.vn/" target="_blank" rel="noopener noreferrer">VinUni</a>, working on vision-language-action models for robotic manipulation and efficient model.
+        </p>
+        <p class="bio">
+          My research passion lies in <strong>Efficient AI</strong> — making powerful models faster, smaller, and more deployable in the real world.
+        </p>
+        <p class="bio">
+          I am actively seeking <strong>Master's or Ph.D. scholarship opportunities</strong> to dive deeper into this space. Feel free to reach out!
+        </p>
+      </div>
     </div>
+
   </div>
 
   <!-- ── Education ── -->
